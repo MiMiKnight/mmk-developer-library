@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>3.2.10</version>
+    </parent>
+
+    <groupId>cn.mimiknight.developer</groupId>
+    <artifactId>mmk-developer-bom</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>mmk-developer-bom</name>
+    <description>mmk-developer-bom</description>
+
+    <properties>
+        <!--spring-boot-->
+        <spring-boot.version>3.2.10</spring-boot.version>
+        <!--lombok-->
+        <lombok.version>1.18.32</lombok.version>
+        <!--commons-lang3-->
+        <commons-lang3.version>3.14.0</commons-lang3.version>
+        <!--commons-collections4-->
+        <commons-collections4.version>4.4</commons-collections4.version>
+        <!--mapstruct-->
+        <mapstruct.version>1.5.5.Final</mapstruct.version>
+        <!--mybatis-spring-boot-starter-->
+        <mybatis-spring.version>3.0.3</mybatis-spring.version>
+        <!--mybatis-plus-boot-starter-->
+        <mybatis-plus.version>3.5.7</mybatis-plus.version>
+        <!--mariadb-java-client-->
+        <mariadb-java-client.version>3.4.1</mariadb-java-client.version>
+        <!--redisson-spring-boot-starter-->
+        <redisson-spring-boot-starter.version>3.30.0</redisson-spring-boot-starter.version>
+        <!--springdoc-openapi-->
+        <springdoc-openapi.version>2.5.0</springdoc-openapi.version>
+
+        <!-- Maven插件版本 -->
+        <!--versions-maven-plugin-->
+        <versions-maven-plugin.version>2.16.2</versions-maven-plugin.version>
+        <!--duplicate-finder-maven-plugin-->
+        <duplicate-finder-maven-plugin.version>1.5.1</duplicate-finder-maven-plugin.version>
+        <!--flatten-maven-plugin-->
+        <flatten-maven-plugin.version>1.6.0</flatten-maven-plugin.version>
+        <!--maven-compiler-plugin-->
+        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+        <!--maven-jar-plugin-->
+        <maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
+        <!--maven-source-plugin-->
+        <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
+        <!--maven-javadoc-plugin.version-->
+        <maven-javadoc-plugin.version>3.6.2</maven-javadoc-plugin.version>
+        <!--maven-resources-plugin-->
+        <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
+        <!--maven-surefire-plugin-->
+        <maven-surefire-plugin.version>3.2.2</maven-surefire-plugin.version>
+        <!--maven-enforcer-plugin-->
+        <maven-enforcer-plugin.version>3.4.1</maven-enforcer-plugin.version>
+        <!--maven-release-plugin-->
+        <maven-release-plugin.version>3.0.1</maven-release-plugin.version>
+        <!--maven-assembly-plugin-->
+        <maven-assembly-plugin.version>3.6.0</maven-assembly-plugin.version>
+        <!--maven-checkstyle-plugin-->
+        <maven-checkstyle-plugin.version>3.3.1</maven-checkstyle-plugin.version>
+        <!--maven-clean-plugin-->
+        <maven-clean-plugin.version>3.3.2</maven-clean-plugin.version>
+    </properties>
+
+    <!--依赖管理-->
+    <dependencyManagement>
+        <dependencies>
+            <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>${commons-collections4.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct -->
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct-processor -->
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${mapstruct.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter -->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis-spring.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-generator -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
+            <dependency>
+                <groupId>org.mariadb.jdbc</groupId>
+                <artifactId>mariadb-java-client</artifactId>
+                <version>${mariadb-java-client.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.redisson/redisson-spring-boot-starter -->
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson-spring-boot-starter.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui -->
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>${springdoc-openapi.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-api -->
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
+                <version>${springdoc-openapi.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!--build-->
+    <build>
+        <plugins>
+            <!--duplicate-finder-maven-plugin-->
+            <plugin>
+                <groupId>org.basepom.maven</groupId>
+                <artifactId>duplicate-finder-maven-plugin</artifactId>
+                <version>${duplicate-finder-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>default</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--maven-enforcer-plugin-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>${maven-enforcer-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>enforce</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <!--检查是否存在重复的依赖项-->
+                                <banDuplicatePomDependencyVersions/>
+                                <!--限制编译的JDK版本-->
+                                <requireJavaVersion>
+                                    <version>[${jdk.min.version},${jdk.max.version}]</version>
+                                </requireJavaVersion>
+                                <!--限制编译JDK的品牌-->
+                                <requireJavaVendor>
+                                    <includes>
+                                        <include>${jdk.vendor.oracle}</include>
+                                    </includes>
+                                </requireJavaVendor>
+                                <!--限制编译Maven版本-->
+                                <requireMavenVersion>
+                                    <version>[${maven.min.version},${maven.max.version}]</version>
+                                </requireMavenVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--maven-source-plugin-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${maven-source-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--maven-compiler-plugin-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <showWarnings>true</showWarnings>
+                    <compilerArgs>
+                        <arg>-Xlint:all</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+        </plugins>
+
+    </build>
+
+</project>
