@@ -1,4 +1,4 @@
-package cn.mimiknight.developer.kuca.spring.appeasy.exception;
+package cn.mimiknight.developer.kuca.proto.api.errorcode.exception;
 
 import cn.mimiknight.developer.kuca.proto.api.errorcode.model.standard.IKucaErrorReturn;
 import lombok.Getter;
@@ -10,10 +10,10 @@ import java.util.function.Supplier;
  * 自定义业务异常
  *
  * @author MiMiKnight victor2015yhm@gmail.com
- * @since 2024-01-19 22:12:39
+ * @date 2024-09-21 16:56:25
  */
 @Getter
-public class BizException extends RuntimeException {
+public class KucaBizException extends RuntimeException {
 
     @Serial
     private static final long serialVersionUID = -1404195234238113609L;
@@ -44,7 +44,7 @@ public class BizException extends RuntimeException {
      * @param errorReturn 异常返回对象
      * @param payload     载荷
      */
-    public BizException(IKucaErrorReturn errorReturn, Object payload) {
+    public KucaBizException(IKucaErrorReturn errorReturn, Object payload) {
         super(errorReturn.getMessage());
         this.message = errorReturn.getMessage();
         this.errorReturn = errorReturn;
@@ -57,7 +57,7 @@ public class BizException extends RuntimeException {
      * @param errorReturn   异常返回对象
      * @param payloadAction 获取载荷的函数式接口
      */
-    public BizException(IKucaErrorReturn errorReturn, Supplier<Object> payloadAction) {
+    public KucaBizException(IKucaErrorReturn errorReturn, Supplier<Object> payloadAction) {
         this(errorReturn, payloadAction.get());
     }
 
@@ -66,7 +66,7 @@ public class BizException extends RuntimeException {
      *
      * @param errorReturn 异常返回对象
      */
-    public BizException(IKucaErrorReturn errorReturn) {
+    public KucaBizException(IKucaErrorReturn errorReturn) {
         this(errorReturn, Object::new);
     }
 
@@ -77,7 +77,7 @@ public class BizException extends RuntimeException {
      * @param cause       原因
      * @param payload     载荷
      */
-    public BizException(IKucaErrorReturn errorReturn, Throwable cause, Object payload) {
+    public KucaBizException(IKucaErrorReturn errorReturn, Throwable cause, Object payload) {
         super(errorReturn.getMessage(), cause);
         this.message = errorReturn.getMessage();
         this.errorReturn = errorReturn;
@@ -91,7 +91,7 @@ public class BizException extends RuntimeException {
      * @param cause         原因
      * @param payloadAction 获取载荷的函数式接口
      */
-    public BizException(IKucaErrorReturn errorReturn, Throwable cause, Supplier<Object> payloadAction) {
+    public KucaBizException(IKucaErrorReturn errorReturn, Throwable cause, Supplier<Object> payloadAction) {
         this(errorReturn, cause, payloadAction.get());
     }
 
@@ -102,7 +102,7 @@ public class BizException extends RuntimeException {
      * @param errorReturn 异常返回对象
      * @param cause       原因
      */
-    public BizException(IKucaErrorReturn errorReturn, Throwable cause) {
+    public KucaBizException(IKucaErrorReturn errorReturn, Throwable cause) {
         this(errorReturn, cause, Object::new);
     }
 
@@ -110,9 +110,9 @@ public class BizException extends RuntimeException {
      * 消息参数赋值，构建异常对象
      *
      * @param args 消息参数
-     * @return {@link BizException}
+     * @return {@link KucaBizException}
      */
-    public BizException build(Object... args) {
+    public KucaBizException build(Object... args) {
         this.args = args;
         this.message = buildMsg(message, args);
         return this;
@@ -122,9 +122,9 @@ public class BizException extends RuntimeException {
      * 消息参数赋值，构建异常对象
      *
      * @param argsAction 获取消息参数函数式接口
-     * @return {@link BizException}
+     * @return {@link KucaBizException}
      */
-    public BizException build(Supplier<Object[]> argsAction) {
+    public KucaBizException build(Supplier<Object[]> argsAction) {
         return build(argsAction.get());
     }
 

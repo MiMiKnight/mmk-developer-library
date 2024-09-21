@@ -1,8 +1,8 @@
 package cn.mimiknight.developer.kuca.spring.appeasy.aspect;
 
 import cn.mimiknight.developer.kuca.proto.api.common.utils.KucaLogUtils;
-import cn.mimiknight.developer.kuca.spring.appeasy.exception.BizException;
-import cn.mimiknight.developer.kuca.spring.appeasy.exception.ServiceException;
+import cn.mimiknight.developer.kuca.proto.api.errorcode.exception.KucaBizException;
+import cn.mimiknight.developer.kuca.spring.appeasy.exception.KucaServiceException;
 import cn.mimiknight.developer.kuca.spring.appeasy.model.response.ServiceResponse;
 import cn.mimiknight.developer.kuca.spring.appeasy.utils.KucaAppEasyUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -70,21 +70,21 @@ public class KucaGlobalExceptionHandlerAdvice implements Ordered {
      * @param e ServiceException
      * @return {@link ServiceResponse }
      */
-    @ExceptionHandler(value = ServiceException.class)
-    public ServiceResponse handle(ServiceException e) {
+    @ExceptionHandler(value = KucaServiceException.class)
+    public ServiceResponse handle(KucaServiceException e) {
         log.warn(KucaLogUtils.buildExceptionLogTip(e));
         // TODO 待完善
         return KucaAppEasyUtils.buildBadServiceResponse(() -> null);
     }
 
     /**
-     * BizException
+     * KucaBizException
      *
-     * @param e BizException
+     * @param e KucaBizException
      * @return {@link ServiceResponse }
      */
-    @ExceptionHandler(value = BizException.class)
-    public ServiceResponse handle(BizException e) {
+    @ExceptionHandler(value = KucaBizException.class)
+    public ServiceResponse handle(KucaBizException e) {
         log.warn(KucaLogUtils.buildExceptionLogTip(e));
         return KucaAppEasyUtils.buildServiceResponse(e.getErrorReturn());
     }
