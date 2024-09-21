@@ -2,6 +2,8 @@ package cn.mimiknight.developer.kuca.spring.appeasy.utils;
 
 import cn.mimiknight.developer.kuca.proto.api.errorcode.model.standard.IKucaErrorReturn;
 import cn.mimiknight.developer.kuca.proto.api.errorcode.utils.KucaECUtils;
+import cn.mimiknight.developer.kuca.spring.api.common.utils.KucaSpringContextUtils;
+import cn.mimiknight.developer.kuca.spring.appeasy.KucaAppEasyProperties;
 import cn.mimiknight.developer.kuca.spring.appeasy.model.response.ServiceResponse;
 
 import java.time.ZonedDateTime;
@@ -30,8 +32,10 @@ public final class KucaAppEasyUtils {
         ServiceResponse response = new ServiceResponse();
         response.setHttpStatus(er.getType().getStatus());
         response.setErrorType(er.getType().getDesc());
-        // TODO 添加错误码前缀
-        response.setErrorCode(KucaECUtils.getErrorCode(er.getCode(), () -> "HD.127"));
+        response.setErrorCode(KucaECUtils.getErrorCode(er.getCode(), () -> {
+            KucaAppEasyProperties config = KucaSpringContextUtils.getBean(KucaAppEasyProperties.class);
+            return config.getAppId();
+        }));
         response.setErrorMsg(er.getMessage());
         response.setData(data);
         response.setTimestamp(ZonedDateTime.now());

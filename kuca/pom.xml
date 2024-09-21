@@ -31,6 +31,7 @@
         <module>spring-project/kuca-ecology-spring</module>
         <module>spring-project/kuca-appeasy-spring</module>
         <module>spring-project/kuca-validation-spring</module>
+        <module>spring-project/kuca-common-api-spring</module>
         <module>spring-boot-project/kuca-spring-boot-autoconfigure</module>
         <module>spring-boot-project/kuca-errorcode-boot-starter</module>
         <module>spring-boot-project/kuca-appeasy-boot-starter</module>
