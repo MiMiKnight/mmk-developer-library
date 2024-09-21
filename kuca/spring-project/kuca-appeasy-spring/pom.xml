@@ -19,6 +19,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>cn.mimiknight.developer.kuca</groupId>
             <artifactId>kuca-common-api</artifactId>
             <version>1.0.0-SNAPSHOT</version>
@@ -32,14 +37,15 @@
         </dependency>
         <dependency>
             <groupId>cn.mimiknight.developer.kuca</groupId>
-            <artifactId>kuca-common-api-spring</artifactId>
+            <artifactId>kuca-errorcode-processor</artifactId>
             <version>1.0.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
+            <groupId>cn.mimiknight.developer.kuca</groupId>
+            <artifactId>kuca-common-api-spring</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
