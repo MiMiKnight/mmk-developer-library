@@ -15,33 +15,44 @@ public class KucaAppEasyProperties {
     private String appId;
 
     /**
-     * 默认OK错误码
+     * 错误码
      */
-    private String okErrorCode;
+    private ErrorCode errorCode = new ErrorCode();
 
-    /**
-     * 默认Bad错误码
-     */
-    private String badErrorCode;
+    @Getter
+    @Setter
+    public static class ErrorCode {
 
-    /**
-     * 接口路径404错误码
-     */
-    private String api404ErrorCode;
+        /**
+         * 默认OK错误码
+         */
+        private String ok;
 
-    /**
-     * 空指针错误码
-     */
-    private String nullPointErrorCode;
+        /**
+         * 默认Bad错误码
+         */
+        private String bad;
 
-    /**
-     * 媒体类型不支持错误码
-     */
-    private String mediaTypeNotSupportedErrorCode;
+        /**
+         * 接口路径404错误码
+         */
+        private String api404;
 
-    /**
-     * Http消息不可读错误码
-     */
-    private String httpMessageNotReadableErrorCode;
+        /**
+         * 空指针错误码
+         */
+        private String nullPoint;
+
+        /**
+         * 媒体类型不支持错误码
+         */
+        private String mediaTypeNotSupported;
+
+        /**
+         * Http消息不可读错误码
+         */
+        private String httpMessageNotReadable;
+
+    }
 
 }

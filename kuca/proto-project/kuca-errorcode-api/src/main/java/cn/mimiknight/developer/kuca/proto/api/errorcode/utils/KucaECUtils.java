@@ -33,25 +33,4 @@ public class KucaECUtils {
         return bad.get();
     }
 
-    /**
-     * 获取错误码前缀
-     *
-     * @param prefix prefix
-     * @return {@link String}
-     */
-    public static String getErrorCodePrefix(Supplier<String> prefix) {
-        return prefix.get();
-    }
-
-    /**
-     * 拼接错误码前缀，获取完整的错误码
-     *
-     * @param code   code
-     * @param prefix prefix
-     * @return {@link String}
-     */
-    public static String getErrorCode(String code, Supplier<String> prefix) {
-        return getErrorCodePrefix(prefix) + code;
-    }
-
 }
