@@ -1,9 +1,6 @@
 package cn.mimiknight.developer.kuca.spring.appeasy.utils;
 
 import cn.mimiknight.developer.kuca.proto.api.errorcode.AbstractKucaErrorReturnFactory;
-import cn.mimiknight.developer.kuca.proto.api.errorcode.AbstractKucaErrorTypeFactory;
-import cn.mimiknight.developer.kuca.proto.api.errorcode.model.impl.KucaErrorReturn;
-import cn.mimiknight.developer.kuca.proto.api.errorcode.model.impl.KucaErrorType;
 import cn.mimiknight.developer.kuca.proto.api.errorcode.model.standard.IKucaErrorReturn;
 import cn.mimiknight.developer.kuca.proto.api.errorcode.utils.KucaECUtils;
 import cn.mimiknight.developer.kuca.spring.api.common.utils.KucaSpringContextUtils;
@@ -64,8 +61,7 @@ public final class KucaAppEasyUtils {
     public static ServiceResponse buildOkServiceResponse(Object data) {
         KucaAppEasyProperties config = KucaSpringContextUtils.getBean(KucaAppEasyProperties.class);
         String okErrorCode = config.getOkErrorCode();
-        String okErrorTypeId = config.getOkErrorTypeId();
-        return buildServiceResponse(getErrorReturn(okErrorCode, okErrorTypeId), data);
+        return buildServiceResponse(getErrorReturn(okErrorCode), data);
     }
 
     /**
@@ -76,29 +72,19 @@ public final class KucaAppEasyUtils {
     public static ServiceResponse buildBadServiceResponse() {
         KucaAppEasyProperties config = KucaSpringContextUtils.getBean(KucaAppEasyProperties.class);
         String badErrorCode = config.getBadErrorCode();
-        String badErrorTypeId = config.getBadErrorTypeId();
-        return buildServiceResponse(getErrorReturn(badErrorCode, badErrorTypeId));
+        return buildServiceResponse(getErrorReturn(badErrorCode));
     }
 
 
     /**
      * get error return
      *
-     * @param okErrorCode   ok error code
-     * @param okErrorTypeId ok error type id
-     * @return {@link KucaErrorReturn }
+     * @param okErrorCode ok error code
+     * @return {@link IKucaErrorReturn }
      */
-    private static KucaErrorReturn getErrorReturn(String okErrorCode, String okErrorTypeId) {
-
+    private static IKucaErrorReturn getErrorReturn(String okErrorCode) {
         AbstractKucaErrorReturnFactory errorReturnFactory = KucaSpringContextUtils.getBean(AbstractKucaErrorReturnFactory.class);
-        KucaErrorReturn okErrorReturn = (KucaErrorReturn) errorReturnFactory.getErrorReturn(okErrorCode);
-
-        AbstractKucaErrorTypeFactory errorTypeFactory = KucaSpringContextUtils.getBean(AbstractKucaErrorTypeFactory.class);
-        KucaErrorType errorType = (KucaErrorType) errorTypeFactory.getErrorType(okErrorTypeId);
-
-        okErrorReturn.setType(errorType);
-
-        return okErrorReturn;
+        return errorReturnFactory.getErrorReturn(okErrorCode);
     }
 
 

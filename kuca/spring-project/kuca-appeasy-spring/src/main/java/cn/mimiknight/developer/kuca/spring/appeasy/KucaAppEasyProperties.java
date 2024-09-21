@@ -24,13 +24,4 @@ public class KucaAppEasyProperties {
      */
     private String badErrorCode;
 
-    /**
-     * 默认OK错误类型ID
-     */
-    private String okErrorTypeId;
-
-    /**
-     * 默认Bad错误类型ID
-     */
-    private String badErrorTypeId;
 }
