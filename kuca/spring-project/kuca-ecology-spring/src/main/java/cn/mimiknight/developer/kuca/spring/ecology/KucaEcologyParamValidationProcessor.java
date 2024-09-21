@@ -31,7 +31,7 @@ import java.util.concurrent.ConcurrentMap;
  */
 @Slf4j
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class EcologyParamValidationProcessor implements BeanFactoryPostProcessor {
+public class KucaEcologyParamValidationProcessor implements BeanFactoryPostProcessor {
 
     private interface Constant {
 
@@ -64,9 +64,9 @@ public class EcologyParamValidationProcessor implements BeanFactoryPostProcessor
     @Getter
     private final ConcurrentMap<Class<EcologyRequest>, ResponseValidator<?>> requestResponseValidationMap;
 
-    private EcologyProperties properties;
+    private KucaEcologyProperties properties;
 
-    public EcologyParamValidationProcessor() {
+    public KucaEcologyParamValidationProcessor() {
         requestRequestValidationMap = new ConcurrentHashMap<>(Constant.INIT_CAPACITY);
         requestResponseValidationMap = new ConcurrentHashMap<>(Constant.INIT_CAPACITY);
     }
@@ -78,7 +78,7 @@ public class EcologyParamValidationProcessor implements BeanFactoryPostProcessor
         // 获取响应参数校验对象
         Map<String, ResponseValidator> responseValidations = beanFactory.getBeansOfType(ResponseValidator.class);
         // 属性
-        properties = beanFactory.getBean(EcologyProperties.class);
+        properties = beanFactory.getBean(KucaEcologyProperties.class);
 
         buildRequestValidationMap(requestValidations);
         buildResponseValidationMap(responseValidations);
@@ -174,7 +174,7 @@ public class EcologyParamValidationProcessor implements BeanFactoryPostProcessor
         if (Objects.isNull(properties)) {
             return false;
         }
-        EcologyProperties.RequestValidation validation = properties.getRequestValidation();
+        KucaEcologyProperties.RequestValidation validation = properties.getRequestValidation();
         if (Objects.isNull(validation)) {
             return false;
         }
@@ -190,7 +190,7 @@ public class EcologyParamValidationProcessor implements BeanFactoryPostProcessor
         if (Objects.isNull(properties)) {
             return false;
         }
-        EcologyProperties.ResponseValidation validation = properties.getResponseValidation();
+        KucaEcologyProperties.ResponseValidation validation = properties.getResponseValidation();
         if (Objects.isNull(validation)) {
             return false;
         }

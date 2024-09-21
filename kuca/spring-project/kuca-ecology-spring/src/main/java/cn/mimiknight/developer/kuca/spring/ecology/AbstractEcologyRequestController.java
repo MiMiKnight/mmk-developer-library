@@ -1,6 +1,6 @@
 package cn.mimiknight.developer.kuca.spring.ecology;
 
-import cn.mimiknight.developer.kuca.spring.ecology.handler.EcologyRequestHandlerBox;
+import cn.mimiknight.developer.kuca.spring.ecology.handler.KucaEcologyRequestHandlerBox;
 import cn.mimiknight.developer.kuca.spring.ecology.model.request.EcologyRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
@@ -19,8 +19,8 @@ import org.springframework.util.Assert;
 @Slf4j
 public abstract class AbstractEcologyRequestController implements ApplicationContextAware, InitializingBean {
     private ApplicationContext appContext;
-    private EcologyRequestExecutor executor;
-    private EcologyRequestHandlerBox box;
+    private KucaEcologyRequestExecutor executor;
+    private KucaEcologyRequestHandlerBox box;
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
@@ -29,8 +29,8 @@ public abstract class AbstractEcologyRequestController implements ApplicationCon
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        this.executor = appContext.getBean(EcologyRequestExecutor.class);
-        this.box = appContext.getBean(EcologyRequestHandlerBox.class);
+        this.executor = appContext.getBean(KucaEcologyRequestExecutor.class);
+        this.box = appContext.getBean(KucaEcologyRequestHandlerBox.class);
     }
 
     /**

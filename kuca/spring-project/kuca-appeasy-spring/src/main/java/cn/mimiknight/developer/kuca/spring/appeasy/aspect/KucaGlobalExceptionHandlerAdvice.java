@@ -4,12 +4,11 @@ import cn.mimiknight.developer.kuca.proto.api.common.utils.KucaLogUtils;
 import cn.mimiknight.developer.kuca.spring.appeasy.exception.BizException;
 import cn.mimiknight.developer.kuca.spring.appeasy.exception.ServiceException;
 import cn.mimiknight.developer.kuca.spring.appeasy.model.response.ServiceResponse;
-import jakarta.servlet.http.HttpServletRequest;
+import cn.mimiknight.developer.kuca.spring.appeasy.utils.KucaAppEasyUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.Ordered;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.servlet.NoHandlerFoundException;
 
 /**
  * kuca global exception handler advice
@@ -35,7 +34,8 @@ public class KucaGlobalExceptionHandlerAdvice implements Ordered {
     @ExceptionHandler(value = Throwable.class)
     public ServiceResponse handle(Throwable e) {
         log.warn(KucaLogUtils.buildExceptionLogTip(e));
-        return AppEasyUtils.buildBadServiceResponse();
+        // TODO 待完善
+        return KucaAppEasyUtils.buildBadServiceResponse(() -> null);
     }
 
     /**
@@ -47,7 +47,8 @@ public class KucaGlobalExceptionHandlerAdvice implements Ordered {
     @ExceptionHandler(value = Exception.class)
     public ServiceResponse handle(Exception e) {
         log.warn(KucaLogUtils.buildExceptionLogTip(e));
-        return AppEasyUtils.buildBadServiceResponse();
+        // TODO 待完善
+        return KucaAppEasyUtils.buildBadServiceResponse(() -> null);
     }
 
     /**
@@ -59,46 +60,33 @@ public class KucaGlobalExceptionHandlerAdvice implements Ordered {
     @ExceptionHandler(value = RuntimeException.class)
     public ServiceResponse handle(RuntimeException e) {
         log.warn(KucaLogUtils.buildExceptionLogTip(e));
-        return AppEasyUtils.buildBadServiceResponse();
-    }
-
-    /**
-     * NoHandlerFoundException
-     *
-     * @param hsr hsr
-     * @param e   e
-     * @return {@link ServiceResponse }
-     */
-    @ExceptionHandler(value = NoHandlerFoundException.class)
-    public ServiceResponse handle(HttpServletRequest hsr, NoHandlerFoundException e) {
-        log.warn(KucaLogUtils.buildExceptionLogTip(e));
-        // 接口访问路径
-        ErrorTip errorTip = new ErrorTip().setTip(hsr.getRequestURI());
-        return AppEasyUtils.buildServiceResponse(AppErrorReturn.API_NOT_FOUND, errorTip);
+        // TODO 待完善
+        return KucaAppEasyUtils.buildBadServiceResponse(() -> null);
     }
 
     /**
      * ServiceException
      *
-     * @param e e
+     * @param e ServiceException
      * @return {@link ServiceResponse }
      */
     @ExceptionHandler(value = ServiceException.class)
     public ServiceResponse handle(ServiceException e) {
         log.warn(KucaLogUtils.buildExceptionLogTip(e));
-        return AppEasyUtils.buildBadServiceResponse();
+        // TODO 待完善
+        return KucaAppEasyUtils.buildBadServiceResponse(() -> null);
     }
 
     /**
      * BizException
      *
-     * @param e e
+     * @param e BizException
      * @return {@link ServiceResponse }
      */
     @ExceptionHandler(value = BizException.class)
     public ServiceResponse handle(BizException e) {
         log.warn(KucaLogUtils.buildExceptionLogTip(e));
-        return AppEasyUtils.buildServiceResponse(e.getErrorReturn());
+        return KucaAppEasyUtils.buildServiceResponse(e.getErrorReturn());
     }
 
 }

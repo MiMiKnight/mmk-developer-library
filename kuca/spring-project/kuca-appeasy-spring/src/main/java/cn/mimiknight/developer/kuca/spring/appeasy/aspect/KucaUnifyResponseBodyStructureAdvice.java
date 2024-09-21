@@ -1,7 +1,7 @@
 package cn.mimiknight.developer.kuca.spring.appeasy.aspect;
 
 import cn.mimiknight.developer.kuca.spring.appeasy.model.response.ServiceResponse;
-import cn.mimiknight.developer.kuca.spring.appeasy.utils.AppEasyUtils;
+import cn.mimiknight.developer.kuca.spring.appeasy.utils.KucaAppEasyUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.core.Ordered;
@@ -53,7 +53,8 @@ public class KucaUnifyResponseBodyStructureAdvice implements ResponseBodyAdvice<
         }
         // 正常响应
         setStatusCode(response, HttpStatus.OK.value());
-        return AppEasyUtils.buildOkServiceResponse(body);
+        // TODO 待完善
+        return KucaAppEasyUtils.buildOkServiceResponse(() -> null, body);
     }
 
     private void setStatusCode(ServerHttpResponse response, int statusCode) {

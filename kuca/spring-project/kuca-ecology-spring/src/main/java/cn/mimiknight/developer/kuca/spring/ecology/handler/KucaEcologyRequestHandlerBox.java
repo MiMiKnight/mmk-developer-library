@@ -25,7 +25,7 @@ import java.util.concurrent.ConcurrentMap;
  */
 @Slf4j
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class EcologyRequestHandlerBox implements ApplicationContextAware, InitializingBean {
+public class KucaEcologyRequestHandlerBox implements ApplicationContextAware, InitializingBean {
 
     private interface Constant {
 
@@ -57,7 +57,7 @@ public class EcologyRequestHandlerBox implements ApplicationContextAware, Initia
      * Request与Handler映射Map
      */
     @Getter
-    private final ConcurrentMap<Class<EcologyRequest>, EcologyRequestHandler> requestHandlerMap;
+    private final ConcurrentMap<Class<EcologyRequest>, KucaEcologyRequestHandler> requestHandlerMap;
 
     /**
      * Request与Response映射Map
@@ -66,7 +66,7 @@ public class EcologyRequestHandlerBox implements ApplicationContextAware, Initia
     private final ConcurrentMap<Class<EcologyRequest>, Class<?>> requestResponseMap;
 
 
-    public EcologyRequestHandlerBox() {
+    public KucaEcologyRequestHandlerBox() {
         requestHandlerMap = new ConcurrentHashMap<>(Constant.INIT_CAPACITY);
         requestResponseMap = new ConcurrentHashMap<>(Constant.INIT_CAPACITY);
     }
@@ -87,11 +87,11 @@ public class EcologyRequestHandlerBox implements ApplicationContextAware, Initia
      * 初始化Map
      */
     private void initRequestHandlerMap() {
-        Map<String, EcologyRequestHandler> handlerMap = appContext.getBeansOfType(EcologyRequestHandler.class);
+        Map<String, KucaEcologyRequestHandler> handlerMap = appContext.getBeansOfType(KucaEcologyRequestHandler.class);
         if (MapUtils.isEmpty(handlerMap)) {
             return;
         }
-        for (EcologyRequestHandler handler : handlerMap.values()) {
+        for (KucaEcologyRequestHandler handler : handlerMap.values()) {
             for (Method method : AopUtils.getTargetClass(handler).getMethods()) {
                 buildRequestHandlerResponseMap(handler, method);
             }
@@ -142,7 +142,7 @@ public class EcologyRequestHandlerBox implements ApplicationContextAware, Initia
      * @param handler Handler对象
      * @param method  handle方法
      */
-    private <H extends EcologyRequestHandler<?, ?>> void buildRequestHandlerResponseMap(H handler, Method method) {
+    private <H extends KucaEcologyRequestHandler<?, ?>> void buildRequestHandlerResponseMap(H handler, Method method) {
         if (isNotHandleMethod(method)) {
             return;
         }
