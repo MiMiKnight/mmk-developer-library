@@ -26,8 +26,9 @@
 
     <modules>
         <module>proto-project/kuca-detach</module>
-        <module>proto-project/kuca-errorcode-api</module>
         <module>proto-project/kuca-common-api</module>
+        <module>proto-project/kuca-errorcode-api</module>
+        <module>proto-project/kuca-errorcode-processor</module>
         <module>spring-project/kuca-ecology-spring</module>
         <module>spring-project/kuca-appeasy-spring</module>
         <module>spring-project/kuca-validation-spring</module>
