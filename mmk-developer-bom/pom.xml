@@ -26,6 +26,8 @@
         <commons-lang3.version>3.14.0</commons-lang3.version>
         <!--commons-collections4-->
         <commons-collections4.version>4.4</commons-collections4.version>
+        <!--commons-validator-->
+        <commons-validator.version>1.9.0</commons-validator.version>
         <!--mapstruct-->
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <!--mybatis-spring-boot-starter-->
@@ -85,18 +87,28 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons-lang3.version}</version>
+                <scope>compile</scope>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-collections4</artifactId>
                 <version>${commons-collections4.version}</version>
+                <scope>compile</scope>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/commons-validator/commons-validator -->
+            <dependency>
+                <groupId>commons-validator</groupId>
+                <artifactId>commons-validator</artifactId>
+                <version>${commons-validator.version}</version>
+                <scope>compile</scope>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct -->
             <dependency>
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId>
                 <version>${mapstruct.version}</version>
+                <scope>compile</scope>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct-processor -->
             <dependency>
@@ -110,18 +122,21 @@
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${mybatis-spring.version}</version>
+                <scope>compile</scope>
             </dependency>
             <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter -->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
+                <scope>compile</scope>
             </dependency>
             <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-generator -->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-generator</artifactId>
                 <version>${mybatis-plus.version}</version>
+                <scope>test</scope>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
             <dependency>
@@ -135,19 +150,21 @@
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson-spring-boot-starter</artifactId>
                 <version>${redisson-spring-boot-starter.version}</version>
+                <scope>compile</scope>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui -->
             <dependency>
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
                 <version>${springdoc-openapi.version}</version>
+                <scope>compile</scope>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-api -->
             <dependency>
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
                 <version>${springdoc-openapi.version}</version>
-                <scope>test</scope>
+                <scope>compile</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
