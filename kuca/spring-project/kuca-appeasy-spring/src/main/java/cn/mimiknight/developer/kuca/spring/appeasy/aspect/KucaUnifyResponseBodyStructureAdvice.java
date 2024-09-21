@@ -1,6 +1,5 @@
 package cn.mimiknight.developer.kuca.spring.appeasy.aspect;
 
-import cn.mimiknight.developer.kuca.spring.appeasy.annotation.KucaEncryption;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
@@ -44,7 +43,7 @@ public class KucaUnifyResponseBodyStructureAdvice implements ResponseBodyAdvice<
 
     @Override
     public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
-        return returnType.hasMethodAnnotation(KucaEncryption.class);
+        return true;
     }
 
     @Override
