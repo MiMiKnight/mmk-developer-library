@@ -83,7 +83,8 @@ public final class KucaAppEasyUtils {
     /**
      * 构建服务响应
      *
-     * @param data 数据
+     * @param errorCode 错误码
+     * @param data      数据
      * @return {@link KucaServiceResponse}
      */
     public static KucaServiceResponse buildServiceResponse(String errorCode, Supplier<Object> data) {
