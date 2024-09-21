@@ -1,6 +1,6 @@
 package cn.mimiknight.developer.kuca.spring.appeasy.aspect;
 
-import cn.mimiknight.developer.kuca.spring.appeasy.annotation.KucaEncryption;
+import cn.mimiknight.developer.kuca.proto.api.common.annotation.KucaEncryption;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;

@@ -1,12 +1,12 @@
 package cn.mimiknight.developer.kuca.spring.appeasy.aspect;
 
+import cn.mimiknight.developer.kuca.spring.appeasy.model.response.ServiceResponse;
+import cn.mimiknight.developer.kuca.spring.appeasy.utils.AppEasyUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.InitializingBean;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.MethodParameter;
 import org.springframework.core.Ordered;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.server.ServerHttpRequest;
@@ -23,22 +23,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  */
 @Slf4j
 @RestControllerAdvice
-public class KucaUnifyResponseBodyStructureAdvice implements ResponseBodyAdvice<Object>, Ordered, ApplicationContextAware, InitializingBean {
-
-    private ApplicationContext appContext;
+public class KucaUnifyResponseBodyStructureAdvice implements ResponseBodyAdvice<Object>, Ordered {
 
     @Override
     public int getOrder() {
         return Byte.MAX_VALUE;
-    }
-
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.appContext = applicationContext;
-    }
-
-    @Override
-    public void afterPropertiesSet() throws Exception {
     }
 
     @Override
@@ -51,7 +40,23 @@ public class KucaUnifyResponseBodyStructureAdvice implements ResponseBodyAdvice<
                                   MediaType selectedContentType,
                                   Class<? extends HttpMessageConverter<?>> selectedConverterType,
                                   ServerHttpRequest request, ServerHttpResponse response) {
-        return body;
+        // 响应类型非指定的JSON媒体类型
+        if (!(MediaType.APPLICATION_JSON.equals(selectedContentType))) {
+            return body;
+        }
+        Class<?> parameterType = returnType.getParameterType();
+        // 异常响应或者人为构造ServiceResponse时
+        if (ServiceResponse.class.isAssignableFrom(parameterType)) {
+            ServiceResponse serviceResponse = (ServiceResponse) body;
+            setStatusCode(response, serviceResponse.getHttpStatus());
+            return body;
+        }
+        // 正常响应
+        setStatusCode(response, HttpStatus.OK.value());
+        return AppEasyUtils.buildOkServiceResponse(body);
     }
 
+    private void setStatusCode(ServerHttpResponse response, int statusCode) {
+        response.setStatusCode(HttpStatusCode.valueOf(statusCode));
+    }
 }

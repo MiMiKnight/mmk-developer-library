@@ -1,6 +1,6 @@
 package cn.mimiknight.developer.kuca.spring.appeasy.aspect;
 
-import cn.mimiknight.developer.kuca.spring.appeasy.annotation.KucaDecryption;
+import cn.mimiknight.developer.kuca.proto.api.common.annotation.KucaDecryption;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.core.Ordered;
