@@ -1,5 +1,9 @@
 package cn.mimiknight.developer.kuca.spring.appeasy.utils;
 
+import cn.mimiknight.developer.kuca.proto.api.errorcode.AbstractKucaErrorReturnFactory;
+import cn.mimiknight.developer.kuca.proto.api.errorcode.AbstractKucaErrorTypeFactory;
+import cn.mimiknight.developer.kuca.proto.api.errorcode.model.impl.KucaErrorReturn;
+import cn.mimiknight.developer.kuca.proto.api.errorcode.model.impl.KucaErrorType;
 import cn.mimiknight.developer.kuca.proto.api.errorcode.model.standard.IKucaErrorReturn;
 import cn.mimiknight.developer.kuca.proto.api.errorcode.utils.KucaECUtils;
 import cn.mimiknight.developer.kuca.spring.api.common.utils.KucaSpringContextUtils;
@@ -8,7 +12,6 @@ import cn.mimiknight.developer.kuca.spring.appeasy.model.response.ServiceRespons
 
 import java.time.ZonedDateTime;
 import java.util.UUID;
-import java.util.function.Supplier;
 
 /**
  * 系统公共工具类
@@ -55,22 +58,47 @@ public final class KucaAppEasyUtils {
     /**
      * 构建Ok服务响应
      *
-     * @param okErrorReturn OK错误返回对象
-     * @param data          数据
+     * @param data 数据
      * @return {@link ServiceResponse}
      */
-    public static ServiceResponse buildOkServiceResponse(Supplier<IKucaErrorReturn> okErrorReturn, Object data) {
-        return buildServiceResponse(okErrorReturn.get(), data);
+    public static ServiceResponse buildOkServiceResponse(Object data) {
+        KucaAppEasyProperties config = KucaSpringContextUtils.getBean(KucaAppEasyProperties.class);
+        String okErrorCode = config.getOkErrorCode();
+        String okErrorTypeId = config.getOkErrorTypeId();
+        return buildServiceResponse(getErrorReturn(okErrorCode, okErrorTypeId), data);
     }
 
     /**
      * 构建Bad服务响应
      *
-     * @param badErrorReturn Bad错误返回对象
      * @return {@link ServiceResponse}
      */
-    public static ServiceResponse buildBadServiceResponse(Supplier<IKucaErrorReturn> badErrorReturn) {
-        return buildServiceResponse(badErrorReturn.get());
+    public static ServiceResponse buildBadServiceResponse() {
+        KucaAppEasyProperties config = KucaSpringContextUtils.getBean(KucaAppEasyProperties.class);
+        String badErrorCode = config.getBadErrorCode();
+        String badErrorTypeId = config.getBadErrorTypeId();
+        return buildServiceResponse(getErrorReturn(badErrorCode, badErrorTypeId));
+    }
+
+
+    /**
+     * get error return
+     *
+     * @param okErrorCode   ok error code
+     * @param okErrorTypeId ok error type id
+     * @return {@link KucaErrorReturn }
+     */
+    private static KucaErrorReturn getErrorReturn(String okErrorCode, String okErrorTypeId) {
+
+        AbstractKucaErrorReturnFactory errorReturnFactory = KucaSpringContextUtils.getBean(AbstractKucaErrorReturnFactory.class);
+        KucaErrorReturn okErrorReturn = (KucaErrorReturn) errorReturnFactory.getErrorReturn(okErrorCode);
+
+        AbstractKucaErrorTypeFactory errorTypeFactory = KucaSpringContextUtils.getBean(AbstractKucaErrorTypeFactory.class);
+        KucaErrorType errorType = (KucaErrorType) errorTypeFactory.getErrorType(okErrorTypeId);
+
+        okErrorReturn.setType(errorType);
+
+        return okErrorReturn;
     }
 
 

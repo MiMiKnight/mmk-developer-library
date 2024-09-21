@@ -9,6 +9,13 @@ package cn.mimiknight.developer.kuca.proto.api.errorcode.model.standard;
 public interface IKucaErrorType {
 
     /**
+     * 错误类型唯一标识
+     *
+     * @return {@link String }
+     */
+    String getId();
+
+    /**
      * 获取状态码
      *
      * @return {@link String}

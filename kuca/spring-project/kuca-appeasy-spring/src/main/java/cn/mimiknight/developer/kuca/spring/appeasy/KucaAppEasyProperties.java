@@ -13,4 +13,24 @@ public class KucaAppEasyProperties {
      * 作为错误码前缀
      */
     private String appId;
+
+    /**
+     * 默认OK错误码
+     */
+    private String okErrorCode;
+
+    /**
+     * 默认Bad错误码
+     */
+    private String badErrorCode;
+
+    /**
+     * 默认OK错误类型ID
+     */
+    private String okErrorTypeId;
+
+    /**
+     * 默认Bad错误类型ID
+     */
+    private String badErrorTypeId;
 }

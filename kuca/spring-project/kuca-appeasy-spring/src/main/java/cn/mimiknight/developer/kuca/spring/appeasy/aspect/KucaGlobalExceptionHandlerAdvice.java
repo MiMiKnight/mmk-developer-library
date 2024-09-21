@@ -34,8 +34,7 @@ public class KucaGlobalExceptionHandlerAdvice implements Ordered {
     @ExceptionHandler(value = Throwable.class)
     public ServiceResponse handle(Throwable e) {
         log.warn(KucaLogUtils.buildExceptionLogTip(e));
-        // TODO 待完善
-        return KucaAppEasyUtils.buildBadServiceResponse(() -> null);
+        return KucaAppEasyUtils.buildBadServiceResponse();
     }
 
     /**
@@ -47,8 +46,7 @@ public class KucaGlobalExceptionHandlerAdvice implements Ordered {
     @ExceptionHandler(value = Exception.class)
     public ServiceResponse handle(Exception e) {
         log.warn(KucaLogUtils.buildExceptionLogTip(e));
-        // TODO 待完善
-        return KucaAppEasyUtils.buildBadServiceResponse(() -> null);
+        return KucaAppEasyUtils.buildBadServiceResponse();
     }
 
     /**
@@ -60,8 +58,7 @@ public class KucaGlobalExceptionHandlerAdvice implements Ordered {
     @ExceptionHandler(value = RuntimeException.class)
     public ServiceResponse handle(RuntimeException e) {
         log.warn(KucaLogUtils.buildExceptionLogTip(e));
-        // TODO 待完善
-        return KucaAppEasyUtils.buildBadServiceResponse(() -> null);
+        return KucaAppEasyUtils.buildBadServiceResponse();
     }
 
     /**
@@ -73,8 +70,7 @@ public class KucaGlobalExceptionHandlerAdvice implements Ordered {
     @ExceptionHandler(value = KucaServiceException.class)
     public ServiceResponse handle(KucaServiceException e) {
         log.warn(KucaLogUtils.buildExceptionLogTip(e));
-        // TODO 待完善
-        return KucaAppEasyUtils.buildBadServiceResponse(() -> null);
+        return KucaAppEasyUtils.buildBadServiceResponse();
     }
 
     /**

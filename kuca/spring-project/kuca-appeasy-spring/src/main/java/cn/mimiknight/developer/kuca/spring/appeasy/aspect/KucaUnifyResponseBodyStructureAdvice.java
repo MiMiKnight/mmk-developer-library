@@ -53,8 +53,7 @@ public class KucaUnifyResponseBodyStructureAdvice implements ResponseBodyAdvice<
         }
         // 正常响应
         setStatusCode(response, HttpStatus.OK.value());
-        // TODO 待完善
-        return KucaAppEasyUtils.buildOkServiceResponse(() -> null, body);
+        return KucaAppEasyUtils.buildOkServiceResponse(body);
     }
 
     private void setStatusCode(ServerHttpResponse response, int statusCode) {
