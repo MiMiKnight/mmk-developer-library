@@ -1,6 +1,6 @@
 package cn.mimiknight.developer.kuca.spring.appeasy.aspect;
 
-import cn.mimiknight.developer.kuca.spring.appeasy.model.response.ServiceResponse;
+import cn.mimiknight.developer.kuca.spring.appeasy.model.response.KucaServiceResponse;
 import cn.mimiknight.developer.kuca.spring.appeasy.utils.KucaAppEasyUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
@@ -46,9 +46,9 @@ public class KucaUnifyResponseBodyStructureAdvice implements ResponseBodyAdvice<
         }
         Class<?> parameterType = returnType.getParameterType();
         // 异常响应或者人为构造ServiceResponse时
-        if (ServiceResponse.class.isAssignableFrom(parameterType)) {
-            ServiceResponse serviceResponse = (ServiceResponse) body;
-            setStatusCode(response, serviceResponse.getHttpStatus());
+        if (KucaServiceResponse.class.isAssignableFrom(parameterType)) {
+            KucaServiceResponse kucaServiceResponse = (KucaServiceResponse) body;
+            setStatusCode(response, kucaServiceResponse.getHttpStatus());
             return body;
         }
         // 正常响应
